@@ -76,7 +76,7 @@ while(continuar =='S'){
   }
 
   console.log(`${nome[0].toUpperCase() + nome.slice(1).toLowerCase()} ganhou ${vitoriaJogador} rodada(s).`);
-  console.log(`O computador ganhou ${vitoriaComputador} rodada(s).`);
+  console.log(`Computador ganhou ${vitoriaComputador} rodada(s).`);
   console.log(`Houve um empate em ${empate} rodada(s).`);
   console.log();
   console.log((`[CPU] ${vitoriaComputador} x ${vitoriaJogador} [PLAYER]`));
