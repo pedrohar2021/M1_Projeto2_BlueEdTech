@@ -28,7 +28,7 @@ while(continuar =='S'){
   
   for (let i = 0; i < rodadas; i++) {
     console.log(`<<-------------- ${i+1}ª RODADA --------------->>`);
-    console.log('           PEDRA, PAPEL, ou TESOURA: \n');
+    console.log('         PEDRA, PAPEL, ou TESOURA: \n');
     let jogador = prompt('Qual é a sua escolha? ').toLowerCase();
     while (jogador != "pedra" && jogador != "papel" && jogador != "tesoura") {
       console.log("Digite um valor válido.");
