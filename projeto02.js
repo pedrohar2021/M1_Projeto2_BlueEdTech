@@ -23,7 +23,6 @@ while(continuar =='S'){
 
   console.log();
   console.log(`Ok ${nome[0].toUpperCase() + nome.slice(1).toLowerCase()}, vamos jogar ${rodadas} rodadas! `)
-  //console.log(`Ok \n${nome}, vamos jogar ${rodadas} rodadas! `);
   console.log();
   
   for (let i = 0; i < rodadas; i++) {
