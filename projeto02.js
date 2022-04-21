@@ -2,12 +2,12 @@ console.clear();
 const prompt = require('prompt-sync')();
 
 let nome = prompt('Olá usuário, qual o seu primeiro nome? ')
-console.log(`Seja bem vindo ${nome}, hoje vamos jogar o famoso \njogo do Pedra, Papel ou Tesoura... ou JO KEN PÔ!`);
+console.log(`Seja bem vindo ${nome[0].toUpperCase() + nome.slice(1).toLowerCase()}, hoje vamos jogar o famoso \njogo do Pedra, Papel ou Tesoura... ou JO KEN PÔ!`);
 
 let continuar = 'S'
 while(continuar =='S'){
 
-  let lista = ["pedra", "papel", "tesoura"];
+  let lista = ["Pedra", "Papel", "Tesoura"];
   let vitoriaJogador = 0;
   let vitoriaComputador = 0;
   let empate = 0;
@@ -15,12 +15,20 @@ while(continuar =='S'){
   console.log('\n<<<<--------------- jOkEnPô! --------------->>>>')
 
   let rodadas = +prompt('Quantas Rodadas iremos jogar? ');
-  console.log(`Ok \n${nome}, vamos jogar ${rodadas} rodadas! `);
-  console.log();
+  
+  while (isNaN(rodadas)) {
+      console.log("Entrada inválida! Digite um número.");
+      rodadas = +prompt('Quantas Rodadas iremos jogar? ');
+  }
 
+  console.log();
+  console.log(`Ok ${nome[0].toUpperCase() + nome.slice(1).toLowerCase()}, vamos jogar ${rodadas} rodadas! `)
+  //console.log(`Ok \n${nome}, vamos jogar ${rodadas} rodadas! `);
+  console.log();
+  
   for (let i = 0; i < rodadas; i++) {
     console.log(`<<-------------- ${i+1}ª RODADA --------------->>`);
-    console.log('          PEDRA / PAPEL / TESOURA: \n');
+    console.log('           PEDRA, PAPEL, ou TESOURA: \n');
     let jogador = prompt('Qual é a sua escolha? ').toLowerCase();
     while (jogador != "pedra" && jogador != "papel" && jogador != "tesoura") {
       console.log("Digite um valor válido.");
@@ -28,20 +36,20 @@ while(continuar =='S'){
     }
     const computador = lista[Math.floor(Math.random() * lista.length)];
 
-    console.log(`A escolha do computador foi ${computador}`);
+    console.log(`A escolha do computador foi ${computador}.`);
 
-    if (computador == "pedra") {
+    if (computador == "Pedra") {
       if (jogador == "pedra") {
         console.log(`${i+1}ª rodada: EMPATE!`);
         empate++;
       } else if (jogador == "papel") {
-        console.log(`${i+1}ª rodada: ${nome} VENCEU!`);
+        console.log(`${i+1}ª rodada: ${nome[0].toUpperCase() + nome.slice(1).toLowerCase()} VENCEU!`);
         vitoriaJogador++;
       } else if (jogador == "tesoura") {
         console.log(`${i+1}ª rodada: Computador VENCEU!`);
         vitoriaComputador++;
       }
-    } else if (computador == "papel") {
+    } else if (computador == "Papel") {
       if (jogador == "pedra") {
         console.log(`${i+1}ª rodada: Computador VENCEU!`);
         vitoriaComputador++;
@@ -49,12 +57,12 @@ while(continuar =='S'){
         console.log(`${i+1}ª rodada: EMPATE!`);
         empate++;
       } else if (jogador == "tesoura") {
-        console.log(`${i+1}ª rodada: ${nome} VENCEU!`);
+        console.log(`${i+1}ª rodada: ${nome[0].toUpperCase() + nome.slice(1).toLowerCase()} VENCEU!`);
         vitoriaJogador++;
       }
-    } else if (computador == "tesoura") {
+    } else if (computador == "Tesoura") {
       if (jogador == "pedra") {
-        console.log(`${i+1}ª rodada: ${nome} VENCEU!`);
+        console.log(`${i+1}ª rodada: ${nome[0].toUpperCase() + nome.slice(1).toLowerCase()} VENCEU!`);
         vitoriaJogador++;
       } else if (jogador == "papel") {
         console.log(`${i+1}ª rodada: Computador VENCEU!`);
@@ -67,15 +75,16 @@ while(continuar =='S'){
     console.log();
   }
 
-  console.log(`${nome} ganhou ${vitoriaJogador} rodada(s).`);
+  console.log(`${nome[0].toUpperCase() + nome.slice(1).toLowerCase()} ganhou ${vitoriaJogador} rodada(s).`);
   console.log(`O computador ganhou ${vitoriaComputador} rodada(s).`);
   console.log(`Houve um empate em ${empate} rodada(s).`);
   console.log();
-  console.log('O GANHADOR FOI ↴ ');
+  console.log((`[CPU] ${vitoriaComputador} x ${vitoriaJogador} [PLAYER]`));
+  console.log(' ⇊ O GANHADOR FOI ⇊ ');
   console.log();
 
   if(vitoriaJogador > vitoriaComputador){
-      console.log(`Você, parabéns ${nome}!`)
+      console.log(`Você ganhou, parabéns ${nome[0].toUpperCase() + nome.slice(1).toLowerCase()}!`)
   }else if(vitoriaJogador < vitoriaComputador){
       console.log('O computador ganhou desta vez!')
   }else{
@@ -91,3 +100,5 @@ while(continuar =='S'){
 }
 
 console.log('Você finalizou o programa. ');
+
+
