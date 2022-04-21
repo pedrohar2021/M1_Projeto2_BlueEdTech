@@ -1,81 +1,93 @@
 console.clear();
 const prompt = require('prompt-sync')();
 
+let nome = prompt('Olá usuário, qual o seu primeiro nome? ')
+console.log(`Seja bem vindo ${nome}, hoje vamos jogar o famoso \njogo do Pedra, Papel ou Tesoura... ou JO KEN PÔ!`);
+
 let continuar = 'S'
 while(continuar =='S'){
 
-console.log('JOKENPO!');
+  let lista = ["pedra", "papel", "tesoura"];
+  let vitoriaJogador = 0;
+  let vitoriaComputador = 0;
+  let empate = 0;
 
-let jokenpo = ['PEDRA', 'PAPEL', 'TESOURA']
-let rodadas = +prompt('Quantas Rodadas iremos jogar? ')
-let vitoriaJogador = 0
-let vitoriaComputador = 0
+  console.log('\n<<<<--------------- jOkEnPô! --------------->>>>')
 
-for (let i = 0; i < rodadas; i++){
-console.log(`VOCÊ PODE ESCOLHER:
-[0] PEDRA
-[1] PAPEL
-[3] TESOURA`);
+  let rodadas = +prompt('Quantas Rodadas iremos jogar? ');
+  console.log(`Ok \n${nome}, vamos jogar ${rodadas} rodadas! `);
+  console.log();
 
-let jogador = +prompt('Qual é a sua escolha?')
-let computador = Math.floor(Math.random() * 2) 
-console.log(`Você escolheu: ${jokenpo[jogador]}`);   
-console.log(`Computador escolheu: ${jokenpo[computador]}`);
-
-if(computador == 0){
-    if (jogador == 0){
-        console.log('EMPATE!');
-    }else if (jogador == 1){
-        console.log('VOCÊ VENCEU!');
-        vitoriaJogador++
-    }else if (jogador == 2){
-        console.log('VOCÊ PERDEU');
-        vitoriaComputador++
-    }else{
-        console.log('INVÁLIDO');
+  for (let i = 0; i < rodadas; i++) {
+    console.log(`<<-------------- ${i+1}ª RODADA --------------->>`);
+    console.log('          PEDRA / PAPEL / TESOURA: \n');
+    let jogador = prompt('Qual é a sua escolha? ').toLowerCase();
+    while (jogador != "pedra" && jogador != "papel" && jogador != "tesoura") {
+      console.log("Digite um valor válido.");
+      jogador = prompt("PEDRA, PAPEL ou TESOURA: ").toLowerCase();
     }
-}else if(computador == 1){
-    if (jogador == 0){
-        console.log('VOCÊ PERDEU');
-        vitoriaComputador++
-    }else if (jogador == 1){
-        console.log('EMPATOU');
-    }else if (jogador == 2){
-        console.log('VOCÊ GANHOU');
-        vitoriaJogador++
-    }else{
-        console.log('INVÁLIDO');
+    const computador = lista[Math.floor(Math.random() * lista.length)];
+
+    console.log(`A escolha do computador foi ${computador}`);
+
+    if (computador == "pedra") {
+      if (jogador == "pedra") {
+        console.log(`${i+1}ª rodada: EMPATE!`);
+        empate++;
+      } else if (jogador == "papel") {
+        console.log(`${i+1}ª rodada: ${nome} VENCEU!`);
+        vitoriaJogador++;
+      } else if (jogador == "tesoura") {
+        console.log(`${i+1}ª rodada: Computador VENCEU!`);
+        vitoriaComputador++;
+      }
+    } else if (computador == "papel") {
+      if (jogador == "pedra") {
+        console.log(`${i+1}ª rodada: Computador VENCEU!`);
+        vitoriaComputador++;
+      } else if (jogador == "papel") {
+        console.log(`${i+1}ª rodada: EMPATE!`);
+        empate++;
+      } else if (jogador == "tesoura") {
+        console.log(`${i+1}ª rodada: ${nome} VENCEU!`);
+        vitoriaJogador++;
+      }
+    } else if (computador == "tesoura") {
+      if (jogador == "pedra") {
+        console.log(`${i+1}ª rodada: ${nome} VENCEU!`);
+        vitoriaJogador++;
+      } else if (jogador == "papel") {
+        console.log(`${i+1}ª rodada: Computador VENCEU!`);
+        vitoriaComputador++;
+      } else if (jogador == "tesoura") {
+        console.log(`${i+1}ª rodada: EMPATE!`);
+        empate++;
+      }
     }
-}else if(computador == 2){
-    if (jogador == 0){
-        console.log('VOCÊ PERDEU');
-        vitoriaComputador++
-    }else if (jogador == 1){
-        console.log('EMPATOU!');
-    }else if (jogador == 2){
-        console.log('VOCÊ VENCEU');
-        vitoriaJogador++
-    }else{
-        console.log('INVÁLIDO');
-    }
-}
-}
+    console.log();
+  }
 
-console.log(`O computador ganhou ${vitoriaComputador} rodadas.`);
-console.log(`O jogador ganhou ${vitoriaJogador} rodadas.`);
+  console.log(`${nome} ganhou ${vitoriaJogador} rodada(s).`);
+  console.log(`O computador ganhou ${vitoriaComputador} rodada(s).`);
+  console.log(`Houve um empate em ${empate} rodada(s).`);
+  console.log();
+  console.log('O GANHADOR FOI ↴ ');
+  console.log();
 
-if (vitoriaJogador > vitoriaComputador){
-    console.log('VOCÊ FOI O GRANDE CAMPEÃO. PARABÉNS! ');
-}else if(vitoriaComputador > vitoriaJogador){
-    console.log('VOCÊ PERDEU. HAHAHA, TENTE NOVAMENTE!');
-}else{
-    console.log('NÃO TIVEMOS VENCEDOR, DEU EMPATE! REVANCHE?');
-}
+  if(vitoriaJogador > vitoriaComputador){
+      console.log(`Você, parabéns ${nome}!`)
+  }else if(vitoriaJogador < vitoriaComputador){
+      console.log('O computador ganhou desta vez!')
+  }else{
+      console.log('Não tivemos vencedor, empatou. Revanche?');
+  }
 
-continuar = prompt('Deseja continuar? [S/N}:').toUpperCase()
-while(continuar != 'S' && continuar != 'N'){
-    continuar = prompt('Deseja continuar? [S/N}:').toUpperCase() 
-}
+  console.log();
+
+  continuar = prompt('Deseja jogar novamente? [S/N]:').toUpperCase()
+  while(continuar != 'S' && continuar != 'N'){
+    continuar = prompt('Deseja jogar novamente?? [S/N]:').toUpperCase() 
+  }
 }
 
 console.log('Você finalizou o programa. ');
