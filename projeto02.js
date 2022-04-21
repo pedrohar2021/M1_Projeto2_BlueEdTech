@@ -2,7 +2,7 @@ console.clear();
 const prompt = require('prompt-sync')();
 
 let nome = prompt('Olá usuário, qual o seu primeiro nome? ')
-console.log(`Seja bem vindo ${nome[0].toUpperCase() + nome.slice(1).toLowerCase()}, hoje vamos jogar o famoso \njogo do Pedra, Papel ou Tesoura... ou JO KEN PÔ!`);
+console.log(`Seja bem vindo ${nome[0].toUpperCase() + nome.slice(1).toLowerCase()}, hoje vamos jogar o famoso \njogo do: Pedra, Papel ou Tesoura... ou JO KEN PÔ!`);
 
 let continuar = 'S'
 while(continuar =='S'){
@@ -84,7 +84,7 @@ while(continuar =='S'){
   console.log();
 
   if(vitoriaJogador > vitoriaComputador){
-      console.log(`Você ganhou, parabéns ${nome[0].toUpperCase() + nome.slice(1).toLowerCase()}!`)
+      console.log(`Você ganhou! Parabéns ${nome[0].toUpperCase() + nome.slice(1).toLowerCase()}!!`)
   }else if(vitoriaJogador < vitoriaComputador){
       console.log('O computador ganhou desta vez!')
   }else{
