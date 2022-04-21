@@ -79,8 +79,8 @@ while(continuar =='S'){
   console.log(`Computador ganhou ${vitoriaComputador} rodada(s).`);
   console.log(`Houve um empate em ${empate} rodada(s).`);
   console.log();
-  console.log((`[CPU] ${vitoriaComputador} x ${vitoriaJogador} [PLAYER]`));
-  console.log(' ⇊ O GANHADOR FOI ⇊ ');
+  console.log((`[Computador] ${vitoriaComputador} x ${vitoriaJogador} [${nome[0].toUpperCase() + nome.slice(1).toLowerCase()}]`));
+  console.log('    ⇊ O GANHADOR FOI ⇊ ');
   console.log();
 
   if(vitoriaJogador > vitoriaComputador){
